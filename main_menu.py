@@ -10,7 +10,7 @@ def main():
     book = dict()
     print("Welcome to the assistant bot!")
     while True:
-        user_input = prompt("Enter a command: ", completer=Completer, lexer=RainbowLexer)
+        user_input = prompt("Enter a command: ", completer=Completer, lexer=RainbowLexer())
         command, *args = parse_input(user_input)
 
         if command in ["close", "exit"]: 
