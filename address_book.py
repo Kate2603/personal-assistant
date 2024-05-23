@@ -1,4 +1,3 @@
-from datetime import datetime, date, timedelta
 
 class Contact:
     def __init__(self, name, phone, address=None, email=None, birthday=None):
