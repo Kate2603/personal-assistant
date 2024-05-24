@@ -47,3 +47,49 @@
 Критерії прийому роботи
 Проєкт розташований у загальнодоступному репозиторії на GitHub (можна використати альтернативу таку як GitLab або BitBucket). Наявність коментарів та документації до коду. Присутня докладна інструкція щодо встановлення та використання застосунку описана в файлі Readme.md. Проєкт можна встановити як Python-пакет та викликати з будь-якого місця системи. Коректність реалізації всіх вимог. Всі вимоги, описані вище, хоча б частково реалізовано. Інтерфейс користувача реалізовано в вигляді командного рядка. Інтерфейс користувача базується на текстових повідомленнях та командах, які користувач вводить з клавіатури. Зручність та логічність інтерфейсу командного рядка. Програма взаємодіє з користувачем в циклі, пропонуючи вибрати команду та обробляючи її, поки користувач не введе команду для виходу. Дані коректно зберігаються на жорсткому диску і не втрачаються після перезапуску помічника. Відсутність помилок у коді при виконані застосунку. Програма повинна коректно обробляти некоректне введення даних користувача без закриття програми. Ефективність використання ООП, спадкування та композиції. Правильна реалізація валідації для кожного поля. Код повинен бути чистим, структурованим та дотримуватися стандартів PEP 8.
 
+-------------------------------------------------------------------------------------------------------
+
+Command Functions:
+General Interaction
+
+hello exit close
+
+Contact Management Adding Contacts add [address] [email] [birthday]:
+
+add John 1234567890 1234ElmSt john@example.com 05.12.1985
+
+add Jeine 1515151515 1987ArreySt jaine@example.com 15.02.1984
+
+add Simon 6564987854 2568MorsSt simon@example.com 08.09.1991
+
+Changing Phone Numbers change John 0987654321
+
+Viewing Phone Numbers phone John
+
+Showing All Contacts all
+
+Birthday Management
+
+Show or change Birthday birthday John 12.05.1990
+
+Listing Upcoming Birthdays birthdays 5
+
+Deleting Contacts delete John
+
+Note Management Adding Notes
+
+add_note Meeting "Discuss project goals" add_note Meeting "Meeting with John"
+
+Finding Notes find_note Meeting
+
+show_notes
+
+Editing Notes edit_note Meeting "Discuss project objectives"
+
+Adding Tags to Notes add_tag Meeting project
+
+Searching Notes by Tags search_by_tag project
+
+Deleting Notes delete_note Meeting
+
+exit close
