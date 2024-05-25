@@ -44,3 +44,25 @@ class AddressBook:
             self.contacts[name].birthday = birthday
             return f"Birthday for {name} added."
         return f"Contact {name} not found."
+    
+    def birthdays(self, days):
+        today = date.today()
+        this_week = today + timedelta(days=days)
+        upcoming_birthdays = []
+
+        for name, contact in self.contacts.items():
+            if contact.birthday:
+                birthday_date = datetime.strptime(contact.birthday, '%d.%m.%Y').date()
+                birthday_date = birthday_date.replace(year=today.year)
+                if birthday_date < today:
+                    birthday_date = birthday_date.replace(year=today.year + 1)
+                if today <= birthday_date <= this_week:
+                    upcoming_birthdays.append((name, birthday_date))
+
+        if upcoming_birthdays:
+            message = "Birthdays this week:\n"
+            for name, birthday in upcoming_birthdays:
+                message += f"{name}: {birthday.strftime('%Y-%m-%d')}\n"
+        else:
+            message = "There are no birthdays this week."
+        return message
