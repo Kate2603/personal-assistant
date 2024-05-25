@@ -2,7 +2,6 @@ from prompt_toolkit.lexers import Lexer
 from prompt_toolkit.styles.named_colors import NAMED_COLORS
 from prompt_toolkit.completion import NestedCompleter
 
-
 class RainbowLexer(Lexer):
     def lex_document(self, document):
         colors = list(sorted(NAMED_COLORS.keys(), key=NAMED_COLORS.get))
@@ -14,7 +13,6 @@ class RainbowLexer(Lexer):
             ]
 
         return get_line
-
 
 completer = NestedCompleter.from_nested_dict({
     'hello': None,
