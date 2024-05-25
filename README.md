@@ -21,6 +21,7 @@ py -m venv venv
 source venv/bin/activate  # для Unix або MacOS
 .\venv\Scripts\activate  # для Windows
 2. Встановіть проект:
+pip install -r requirements.txt
 pip install .
 3. Команда notebook буде доступна для запуску вашого додатку з командного рядка.
 
