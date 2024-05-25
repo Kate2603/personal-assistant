@@ -1,5 +1,5 @@
 import pickle
-from prompt_toolkit import prompt
+from prompt_tool import prompt
 from notebook.notebook import Notebook
 from notebook.address_book import AddressBook
 from prompt_tool import RainbowLexer, completer

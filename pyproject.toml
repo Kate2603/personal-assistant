@@ -17,8 +17,10 @@ license = {text = "MIT"}
 homepage = "https://example.com/your-project"
 
 [project.dependencies]
-prompt_toolkit = "==3.0.43"
-wcwidth = "==0.2.13"
+dependencies = [
+    "prompt_toolkit==3.0.43",
+    "wcwidth==0.2.13"
+]
 
 [project.entry-points.console_scripts]
 notebook = "notebook.notebook:main"
