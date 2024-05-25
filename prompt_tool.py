@@ -5,7 +5,7 @@ from prompt_toolkit.completion import NestedCompleter
 
 class RainbowLexer(Lexer):
     def lex_document(self, document):
-        colors = list(sorted({"Teal": "#008080"}, key=NAMED_COLORS.get))
+        colors = list(sorted(NAMED_COLORS.keys(), key=NAMED_COLORS.get))
 
         def get_line(lineno):
             return [
@@ -16,8 +16,20 @@ class RainbowLexer(Lexer):
         return get_line
 
 
-Completer = NestedCompleter.from_nested_dict({'hello': None, 'exit': None,
-                                              'close': None, '.': None, 'add': None,
-                                              'change': None, 'edit': None, 'phone': None,
-                                              'show': None, 'all': None, 'birthdays': None, 'show-birthday': None, 'add-birthday': None,
-                                              'add-note': None, 'find-tag': None, 'sort-notes': None})
+completer = NestedCompleter.from_nested_dict({
+    'hello': None,
+    'exit': None,
+    'close': None,
+    'add': None,
+    'change': None,
+    'edit': None,
+    'phone': None,
+    'show': None,
+    'all': None,
+    'birthdays': None,
+    'show-birthday': None,
+    'add-birthday': None,
+    'add-note': None,
+    'find-tag': None,
+    'sort-notes': None
+})
