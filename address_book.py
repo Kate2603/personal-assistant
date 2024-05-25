@@ -123,12 +123,13 @@ class Record:
                     birthday_date = birthday_date.replace(year=today.year + 1)
                 if today <= birthday_date <= this_week:
                     upcoming_birthdays.append((name, birthday_date))
+
         if upcoming_birthdays:
-            message = "День народження цього тижня:\n"
+            message = "Birthdays this week:\n"
             for name, birthday in upcoming_birthdays:
                 message += f"{name}: {birthday.strftime('%Y-%m-%d')}\n"
         else:
-            message = "На цьому тижні немає днів народжень"
+            message = "There are no birthdays this week."
         return message
         
     def __str__(self):
