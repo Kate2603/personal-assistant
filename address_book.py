@@ -1,3 +1,4 @@
+import re
 from datetime import datetime, date, timedelta
 
 class Contact:
@@ -51,11 +52,28 @@ class Phone(Field):
 
 
 class Address(Field):
-    pass
+    def __init__(self, value):
+        if not self.address_validation(value):
+            raise ValueError("Адреса повинна містити: вулицю, номер будинку")
+        super().__init__(value)
+        
+    def address_validation(self, address):
+        parts = address.split(',')
+        if len(parts) < 2:
+            return False
+        street, house_number = parts[:2]
+        return bool(street.strip()) and bool(house_number.strip())
 
 
 class Email(Field):
-    pass
+    def __init__(self, value):
+        if not self.email_validation(value):
+            raise ValueError("Неправильний формат електронної пошти")
+        super().__init__(value)
+    
+    def email_validation(self, email):
+        pattern = r"^[\w\.-]+@[\w\.-]+\.\w+$"
+        return re.match(pattern, email) is not None
 
 
 class Birthday(Field):
@@ -91,6 +109,27 @@ class Record:
             self.birthday = Birthday(birthday)
         else:
             raise ValueError("Дата народження вже існує для цього контакту.")
+
+    def birthdays(self, days):
+        today = date.today()
+        this_week = today + timedelta(days=days)
+        upcoming_birthdays = []
+
+        for name, contact in self.contacts.items():
+            if contact.birthday:
+                birthday_date = datetime.strptime(contact.birthday, '%d.%m.%Y').date()
+                birthday_date = birthday_date.replace(year=today.year)
+                if birthday_date < today:
+                    birthday_date = birthday_date.replace(year=today.year + 1)
+                if today <= birthday_date <= this_week:
+                    upcoming_birthdays.append((name, birthday_date))
+        if upcoming_birthdays:
+            message = "День народження цього тижня:\n"
+            for name, birthday in upcoming_birthdays:
+                message += f"{name}: {birthday.strftime('%Y-%m-%d')}\n"
+        else:
+            message = "На цьому тижні немає днів народжень"
+        return message
         
     def __str__(self):
         phones = "; ".join(p.value for p in self.phones)
